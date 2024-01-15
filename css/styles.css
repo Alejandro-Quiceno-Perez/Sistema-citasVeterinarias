@@ -44,6 +44,9 @@ body {
 .card-title span {
   font-weight: bold;
 }
+.rounded {
+    box-shadow: -2px -2px 10px black;
+}
 
 #agendarCitas {
   height: 555px;

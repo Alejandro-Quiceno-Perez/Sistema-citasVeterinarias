@@ -17,8 +17,36 @@ const date = document.querySelector("#date_cite");
 const time = document.querySelector("#time_cite");
 const description = document.querySelector("#description");
 const btnGuardar = document.querySelector("#guardar");
-const btnEliminar = document.querySelectorAll("#delet");
-const btnEditar = document.querySelector("#edit");
+
+// Se crean todos los botones de manera dinamica 
+let div1 = document.createElement("div");
+div1.className = "card mb-2";
+
+let nombreTituloH5 = document.createElement("h5");
+nombreTituloH5.className = "card-header";
+
+let div2 = document.createElement("div");
+div2.className = "card-body";
+
+let nombreResponsable = document.createElement("h5");
+nombreResponsable.className = "card-title";
+
+let infoCita = document.createElement("p");
+infoCita.className = "card-text";
+
+let horarioCita = document.createElement("p");
+horarioCita.className = "card-text";
+
+const btnEliminar = document.createElement("button");
+btnEliminar.className = "btn btn-danger mx-3";
+btnEliminar.id = "delet";
+btnEliminar.textContent = "Eliminar";
+
+const btnEditar = document.createElement("button");
+btnEditar.className = "btn btn-primary";
+btnEditar.id = "edit";
+btnEditar.textContent = "Editar";
+// Fin de la creacion de BTN dinamicos 
 
 /* SE CREA EL BOTON ELIMINAR */
 /* const btnEliminar = document.createElement("button");
@@ -37,42 +65,60 @@ function printUser() {
           `
     } else {
         usuarios.forEach((user) => {
-            agendarCitas.innerHTML += `
-              <div class="card mb-2">
-                  <h5 class="card-header">${user.namePet}</h5>
-                  <div class="card-body">
-                      <h5 class="card-title">Responsable: <span>${user.namePerson}</span> -- Telefono: <span>${user.phone}</span></h5>
-                      <p class="card-text"><span>Sintomas del paciente:</span> ${user.description}</p>
-                      <p><span>Fecha de la cita: ${user.date}</span> <span>Hora: ${user.time}</span></p>
-                      <button class="btn btn-primary" id="edit">Editar</button>
-                      <button class="btn btn-danger" id="delet">Eliminar</button>
-                  </div>
-              </div>
-              `
+            // agendarCitas.innerHTML += `
+            //   <div class="card mb-2">
+            //       <h5 class="card-header">${user.namePet}</h5>
+            //       <div class="card-body">
+            //           <h5 class="card-title">Responsable: <span>${user.namePerson}</span> -- Telefono: <span>${user.phone}</span></h5>
+            //           <p class="card-text"><span>Sintomas del paciente:</span> ${user.description}</p>
+            //           <p><span>Fecha de la cita: ${user.date}</span> <span>Hora: ${user.time}</span></p>
+            //           ${agendarCitas.appendChild(btnEditar)}
+            //       </div>
+            //   </div>
+            //   `
+            agendarCitas.appendChild(div1);
+            nombreTituloH5.textContent = `${user.namePet}`;
+            div1.appendChild(nombreTituloH5);
+            div1.appendChild(div2);
+            nombreResponsable.textContent = `Responsable: ${user.namePerson}`
+            div2.appendChild(nombreResponsable);
+            infoCita.textContent = `Sintomas: ${user.description}`
+            div2.appendChild(infoCita);
+            horarioCita.textContent = `Fecha: ${user.date}, hora: ${user.time}`;
+            div2.appendChild(horarioCita);
+            div2.appendChild(btnEditar);
+            div2.appendChild(btnEliminar);
         });
     }
 };
 
+
+
+
+
+
+
+
+
+
 /* EVENTO DE GUARDAR */
 btnGuardar.addEventListener("click", (e) => {
     e.preventDefault();
-    agregarCitas();
+    if ((namePet.value == "") && (namePerson.value == "") && (phoneNumber.value == "") && (date.value == "") && (time.value == "") && (description.value == "")) {
+        alert("Todos los campos son obligatorios");
+    } else {
+        agregarCitas();
 
-    setTimeout(() => {
-        namePet.value = "";
-        namePerson.value = "";
-        phoneNumber.value = "";
-        date.value = "";
-        time.value = "";
-        description.value = "";
-    }, 300);
+        setTimeout(() => {
+            namePet.value = "";
+            namePerson.value = "";
+            phoneNumber.value = "";
+            date.value = "";
+            time.value = "";
+            description.value = "";
+        }, 300);
+    }
 });
-
-/* EVENTO DE ELIMINAR */
-btnEliminar.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Aun no se puede eliminar");
-})
 
 /* FUNCION DE AGREGAR CITAS */
 function agregarCitas() {
