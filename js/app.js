@@ -6,6 +6,22 @@ let usuarios = [
         date: "10/10/2010",
         time: "9:10 Am",
         description: "lorem lorem lorem lorem lorem lorem lorem lorem",
+    },
+    {
+        namePet: "Paquito",
+        namePerson: "Elvis",
+        phone: 1234567890,
+        date: "10/10/2010",
+        time: "9:10 Am",
+        description: "lorem lorem lorem lorem lorem lorem lorem lorem",
+    },
+    {
+        namePet: "PacoTe",
+        namePerson: "Elvis",
+        phone: 1234567890,
+        date: "10/10/2010",
+        time: "9:10 Am",
+        description: "lorem lorem lorem lorem lorem lorem lorem lorem",
     }
 ];
 
@@ -18,35 +34,7 @@ const time = document.querySelector("#time_cite");
 const description = document.querySelector("#description");
 const btnGuardar = document.querySelector("#guardar");
 
-// Se crean todos los botones de manera dinamica 
-let div1 = document.createElement("div");
-div1.className = "card mb-2";
 
-let nombreTituloH5 = document.createElement("h5");
-nombreTituloH5.className = "card-header";
-
-let div2 = document.createElement("div");
-div2.className = "card-body";
-
-let nombreResponsable = document.createElement("h5");
-nombreResponsable.className = "card-title";
-
-let infoCita = document.createElement("p");
-infoCita.className = "card-text";
-
-let horarioCita = document.createElement("p");
-horarioCita.className = "card-text";
-
-const btnEliminar = document.createElement("button");
-btnEliminar.className = "btn btn-danger mx-3";
-btnEliminar.id = "delet";
-btnEliminar.textContent = "Eliminar";
-
-const btnEditar = document.createElement("button");
-btnEditar.className = "btn btn-primary";
-btnEditar.id = "edit";
-btnEditar.textContent = "Editar";
-// Fin de la creacion de BTN dinamicos 
 
 /* SE CREA EL BOTON ELIMINAR */
 /* const btnEliminar = document.createElement("button");
@@ -65,6 +53,35 @@ function printUser() {
           `
     } else {
         usuarios.forEach((user) => {
+            // Se crean todos los botones de manera dinamica 
+            const div1 = document.createElement("div");
+            div1.className = "card mb-2";
+
+            const nombreTituloH5 = document.createElement("h5");
+            nombreTituloH5.className = "card-header";
+
+            const div2 = document.createElement("div");
+            div2.className = "card-body";
+
+            const nombreResponsable = document.createElement("h5");
+            nombreResponsable.className = "card-title";
+
+            const infoCita = document.createElement("p");
+            infoCita.className = "card-text";
+
+            const horarioCita = document.createElement("p");
+            horarioCita.className = "card-text";
+
+            const btnEliminar = document.createElement("button");
+            btnEliminar.className = "btn btn-danger mx-3";
+            btnEliminar.id = "delet";
+            btnEliminar.textContent = "Eliminar";
+
+            const btnEditar = document.createElement("button");
+            btnEditar.className = "btn btn-primary";
+            btnEditar.id = "edit";
+            btnEditar.textContent = "Editar";
+            // Fin de la creacion de BTN dinamicos
             // agendarCitas.innerHTML += `
             //   <div class="card mb-2">
             //       <h5 class="card-header">${user.namePet}</h5>
@@ -88,13 +105,16 @@ function printUser() {
             div2.appendChild(horarioCita);
             div2.appendChild(btnEditar);
             div2.appendChild(btnEliminar);
+
+            btnEliminar.addEventListener("click", (e) =>{
+                usuarios.filter(() => {
+                    
+                })
+            })
         });
     }
+    
 };
-
-
-
-
 
 
 
