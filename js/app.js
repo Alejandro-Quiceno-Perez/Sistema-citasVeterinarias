@@ -1,29 +1,6 @@
-let usuarios = [
-    {
-        namePet: "Paco",
-        namePerson: "Elvis",
-        phone: 1234567890,
-        date: "10/10/2010",
-        time: "9:10 Am",
-        description: "lorem lorem lorem lorem lorem lorem lorem lorem",
-    },
-    {
-        namePet: "Paquito",
-        namePerson: "Elvis",
-        phone: 1234567890,
-        date: "10/10/2010",
-        time: "9:10 Am",
-        description: "lorem lorem lorem lorem lorem lorem lorem lorem",
-    },
-    {
-        namePet: "PacoTe",
-        namePerson: "Elvis",
-        phone: 1234567890,
-        date: "10/10/2010",
-        time: "9:10 Am",
-        description: "lorem lorem lorem lorem lorem lorem lorem lorem",
-    }
-];
+let usuarios = [];
+
+let usuario;
 
 const agendarCitas = document.querySelector("#agendarCitas");
 const namePet = document.querySelector("#name_pet");
@@ -34,23 +11,16 @@ const time = document.querySelector("#time_cite");
 const description = document.querySelector("#description");
 const btnGuardar = document.querySelector("#guardar");
 
-
-
-/* SE CREA EL BOTON ELIMINAR */
-/* const btnEliminar = document.createElement("button");
-btnEliminar.innerHTML = "Eliminar";
-btnEliminar.setAttribute("id", "delet");
-btnEliminar.setAttribute("class", "btn btn-danger") */
-
+/* PINTAR USUARIOS Y CARDS */
 printUser();
 function printUser() {
     agendarCitas.innerHTML = "";
     if (usuarios.length === 0) {
         agendarCitas.innerHTML += `
-          <p class="alert alert-danger">
-              No hay citas agendadas
-          </p>
-          `
+            <p class="alert alert-danger">
+                No hay citas agendadas
+            </p>
+        `
     } else {
         usuarios.forEach((user) => {
             // Se crean todos los botones de manera dinamica 
@@ -81,23 +51,11 @@ function printUser() {
             btnEditar.className = "btn btn-primary";
             btnEditar.id = "edit";
             btnEditar.textContent = "Editar";
-            // Fin de la creacion de BTN dinamicos
-            // agendarCitas.innerHTML += `
-            //   <div class="card mb-2">
-            //       <h5 class="card-header">${user.namePet}</h5>
-            //       <div class="card-body">
-            //           <h5 class="card-title">Responsable: <span>${user.namePerson}</span> -- Telefono: <span>${user.phone}</span></h5>
-            //           <p class="card-text"><span>Sintomas del paciente:</span> ${user.description}</p>
-            //           <p><span>Fecha de la cita: ${user.date}</span> <span>Hora: ${user.time}</span></p>
-            //           ${agendarCitas.appendChild(btnEditar)}
-            //       </div>
-            //   </div>
-            //   `
             agendarCitas.appendChild(div1);
             nombreTituloH5.textContent = `${user.namePet}`;
             div1.appendChild(nombreTituloH5);
             div1.appendChild(div2);
-            nombreResponsable.textContent = `Responsable: ${user.namePerson}`
+            nombreResponsable.textContent = `Responsable: ${user.namePerson}, Telefono: ${user.phone}`
             div2.appendChild(nombreResponsable);
             infoCita.textContent = `Sintomas: ${user.description}`
             div2.appendChild(infoCita);
@@ -106,20 +64,29 @@ function printUser() {
             div2.appendChild(btnEditar);
             div2.appendChild(btnEliminar);
 
-            btnEliminar.addEventListener("click", (e) =>{
-                usuarios.filter(() => {
-                    
-                })
-            })
+            btnEliminar.addEventListener("click", (e) => {
+                console.log(user.namePet);
+                usuarios = usuarios.filter(elemento => elemento.namePet !== user.namePet);
+                printUser();
+            });
+
+            btnEditar.addEventListener("click", () => {
+                console.log(user);
+                namePet.value = user.namePet;
+                namePerson.value = user.namePerson;
+                phoneNumber.value = user.phone;
+                date.value = user.date;
+                time.value = user.time
+                description.value = user.description;
+                btnGuardar.textContent = "Actualizar";
+
+                usuarios = usuarios.filter(elemento => elemento.namePet !== user.namePet);
+            });
+            btnGuardar.textContent = "Guardar";
         });
     }
-    
+
 };
-
-
-
-
-
 
 /* EVENTO DE GUARDAR */
 btnGuardar.addEventListener("click", (e) => {
