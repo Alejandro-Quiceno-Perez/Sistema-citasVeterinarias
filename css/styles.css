@@ -58,3 +58,9 @@ body {
 #agendarCitas::-webkit-scrollbar {
   -webkit-appearance: none;
 }
+
+@media (max-width: 766px) {
+  .citas {
+    margin-top: 30px;
+  }
+}
